@@ -90,6 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           if (enable == false) {
                             edit = 'DONE';
                             enable = true;
+                            
                           } else if (enable == true) {
                             edit = 'EDIT';
                             enable = false;
@@ -203,6 +204,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 //Function to calculate body mass Index
 
 double bodyMassIndex(String weight, String height){
+  if(weight==null || weight==''){
+    weight='0';
+  }
+  if(height == null || height==''){
+    height='0';
+  }
   var newWeight=double.parse(weight);
   var newHeight=double.parse(height);
 

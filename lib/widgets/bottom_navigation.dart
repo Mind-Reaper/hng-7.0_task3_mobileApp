@@ -1,5 +1,7 @@
 // this is the bottom navigation widget that will be applied to different screens
 import 'package:flutter/material.dart';
+import 'package:ifitness/screens/details.dart';
+import 'package:ifitness/screens/welcome.dart';
 import '../screens/favourites.dart';
 import '../screens/home.dart';
 import '../screens/profile.dart';
@@ -10,7 +12,6 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationBarState extends State<BottomNavigation> {
- 
 
   int _selectedIndex = 0;
 
@@ -18,62 +19,66 @@ class _BottomNavigationBarState extends State<BottomNavigation> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if(index==0){
-        _selectedIndex = index;
+    });
+
+    switch (_selectedIndex) {
+      case 0:
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context){
               return  HomePage();
             }));
-      }
-      else if(index==1){
-        _selectedIndex = index;
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context){
-              return  FavouritesPage();
-            }));
-      }
-      else{
-        _selectedIndex = index;
+        break;
+      case 1:
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context){
               return  ProfileScreen();
             }));
-      }
-
-    });
+        break;
+    }
   }
+
+//  final List<Widget>_children=[
+//    WelcomeScreen(),
+//    UserDetails(),
+//    HomePage(),
+//    ProfileScreen(),
+//
+//  ];
 
   @override
   Widget build(BuildContext context) {
 
     return Container(
-      child: BottomNavigationBar(
-        items:const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Exercises',
-              style: TextStyle(
-                  fontFamily: 'Work Sans/WorkSans-Regular'
-              ),)
-          ),
-          BottomNavigationBarItem(
-            icon:Icon(Icons.star),
-            title: Text('Favourites',
-              style: TextStyle(
-                  fontFamily: 'Work Sans/WorkSans-Regular'
-              ),)
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin),
-            title: Text('Profile',
-            style: TextStyle(
-                fontFamily: 'Work Sans/WorkSans-Regular'
-            ),)
-          ),],
+//      body: _children[_selectedIndex],
 
-       currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xff2d438d),
-        onTap: _onItemTapped,
-      ));
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          selectedItemColor: Color(0xff2d438d),
+          onTap: _onItemTapped,
+          items:const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('Exercises',
+                style: TextStyle(
+                    fontFamily: 'Work Sans/WorkSans-Regular'
+                ),)
+            ),
+
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_pin),
+              title: Text('Profile',
+              style: TextStyle(
+                  fontFamily: 'Work Sans/WorkSans-Regular'
+              ),)
+            ),],
+        ));
+
   }
+//  void _onItemTapped(int index) {
+//    setState(() {
+//      _selectedIndex = index;
+//    });
+//  }
 }
+
+
